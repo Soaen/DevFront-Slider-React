@@ -8,6 +8,28 @@ export default function Slider(){
     const [slideIndex, setSlideIndex] = useState(1)
     const [slideTimeOut, setSlideTimeOut] = useState(false)
 
+
+    const LEFT_ARROW_KEY = "ArrowLeft";
+    const RIGHT_ARROW_KEY = "ArrowRight";
+  
+  
+    function SliderKey(event){
+  
+  switch(event.code) 
+  {
+      case RIGHT_ARROW_KEY:
+          nextSlide();
+          break;
+  
+      case LEFT_ARROW_KEY:
+          prevSlide();
+          break;
+          default:
+  }
+    }
+  
+    document.addEventListener('keyup', SliderKey);
+
     const nextSlide = () =>{
         if(slideTimeOut === false){
             setSlideTimeOut(true);
@@ -18,22 +40,22 @@ export default function Slider(){
             }
             setTimeout(() => {
                 setSlideTimeOut(false);
-            }, "2000")
+            }, 2000)
         }
     }
 
-    const prevSlide = () =>{
+    const prevSlide = () => {
         if(slideTimeOut === false){
             setSlideTimeOut(true);
             if(slideIndex !== 1){
-                setSlideIndex (slideIndex -1)
+                setSlideIndex (slideIndex - 1)
             }
             else if (slideIndex === 1){
                 setSlideIndex(dataSlider.length)
             }
         setTimeout(() => {
             setSlideTimeOut(false);
-        }, "2000")
+        }, 2000)
         }
     }
 
